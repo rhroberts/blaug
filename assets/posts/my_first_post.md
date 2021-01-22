@@ -19,7 +19,7 @@ A [hyperlink](https://duckduckgo.com).
 
 Here's giles!
 
-![giles]("images/giles_spot.jpg")
+![giles]("https://raw.githubusercontent.com/rhroberts/blaug/main/assets/posts/images/giles_spot.jpg")
 
 ## Conclusion
 
