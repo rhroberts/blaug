@@ -26,6 +26,7 @@ async fn main() {
 }
 
 fn get_post(title: String) -> http::Result<Response<String>> {
+    let css_path = Path::new("./assets/css/blog_posts.css");
     let post_string = format!("./assets/posts/{}.md", title);
     let post_path = Path::new(&post_string);
     if post_path.exists() {
@@ -33,7 +34,11 @@ fn get_post(title: String) -> http::Result<Response<String>> {
             Err(error) => error.to_string(),
             Ok(contents) => contents,
         };
-        return Response::builder().body(markdown::to_html(&mkd));
+        let body: String = markdown::to_html(&mkd);
+        let style = fs::read_to_string(css_path).unwrap();
+        let head = format!("<head><style>{}</style></head>\n\n", style);
+        println!("{}{}", &head, &body);
+        return Response::builder().body(head + &body);
     } else {
         return Response::builder().body(format!(
             "{} does not exist!",
