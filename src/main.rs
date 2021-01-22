@@ -1,24 +1,52 @@
-use warp::Filter;
+use std::{fs, path::Path};
 
-extern crate pretty_env_logger;
-#[macro_use]
-extern crate log;
+use log;
+use markdown;
+use pretty_env_logger;
+use warp::{
+    http::{self, Response},
+    Filter,
+};
 
 #[tokio::main]
 async fn main() {
     pretty_env_logger::init();
     // GET / => 200 OK with body "Hello, root!"
-    let hello = warp::path::end().map(|| "Hello, root!");
-    // GET /apple => 200 OK with body "Hello, apple!"
-    let hello_friend = warp::path!(String).map(|friend: String| param_extract(friend));
+    let hello = warp::path::end().map(|| "Hello.");
+    // GET /blog
+    let blog = warp::path!("blog").map(|| "Welcome to my blog.");
+    // GET /blog/[article_title]
+    let posts = warp::path!("blog" / String).map(|post| get_post(post));
 
     // API
-    let routes = warp::get().and(hello.or(hello_friend));
+    let routes = warp::get().and(hello.or(blog).or(posts));
 
+    log::info!("Starting server...");
     warp::serve(routes).run(([127, 0, 0, 1], 3030)).await;
 }
 
-fn param_extract(param: String) -> String {
-    info!("I extracted {}!", &param);
-    return format!("Hello, {}!", &param);
+fn get_post(title: String) -> http::Result<Response<String>> {
+    let post_string = format!("./assets/posts/{}.md", title);
+    let post_path = Path::new(&post_string);
+    if post_path.exists() {
+        let mkd = match fs::read_to_string(post_path) {
+            Err(error) => error.to_string(),
+            Ok(contents) => contents,
+        };
+        return Response::builder().body(markdown::to_html(&mkd));
+    } else {
+        return Response::builder().body(format!(
+            "{} does not exist!",
+            post_path.display().to_string()
+        ));
+    }
+}
+
+fn get_post_list() -> fs::ReadDir {
+    let path_result = fs::read_dir("./assets/posts");
+    let paths = match path_result {
+        Err(error) => panic!("Problem getting file paths due to error: {}", error),
+        Ok(read_dir) => read_dir,
+    };
+    return paths;
 }
