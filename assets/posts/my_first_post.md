@@ -17,9 +17,9 @@ And a checklist...
 
 A [hyperlink](https://duckduckgo.com).
 
-Here's giles!
+Here's a nice vista.
 
-![giles]("https://raw.githubusercontent.com/rhroberts/blaug/main/assets/posts/images/giles_spot.jpg")
+![fjord](https://i.imgur.com/Z4qPT.jpg)
 
 ## Conclusion
 
