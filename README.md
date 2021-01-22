@@ -1,2 +1,2 @@
 # blaug
-my website
+a toy website
