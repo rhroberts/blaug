@@ -1,7 +1,21 @@
+::-webkit-scrollbar {
+  width: 6px;
+}
+
+::-webkit-scrollbar-track {
+  background: rgba(53, 53, 53, 1);
+}
+
+::-webkit-scrollbar-thumb {
+  background-color: rgba(100, 150, 255, 1);
+  border-radius: 10px;
+}
+
 body {
-  background-color: rgba(53, 53, 53, 1);
-  color: rgba(200, 200, 200, 1);
-  font-family: sans-serif;
+  color: rgba(53, 53, 53, 1);
+  background-color: rgba(230, 230, 230, 1);
+  font-family: 'Cantarell';
+  font-size: 18px;
   width: 50%;
   margin-left: auto;
   margin-right: auto;
@@ -9,6 +23,34 @@ body {
 }
 
 h1 {
-  box-shadow: 2px 2px 8px black, -2px -2px 8px rgba(40, 40, 40, 1);
-  text-align: center;
+  text-align: left;
+  border-top: 0px;
+  border-left: 0px;
+  border-right: 0px;
+  border-bottom: 5px;
+  border-style: solid;
+  border-color: rgba(100, 150, 255, 1);
+  color: rgba(100, 150, 255, 1);
+  padding-bottom: 10px;
+}
+
+img {
+  width: 100%;
+}
+
+pre {
+  background-color: #e8e8e8;
+  padding-top: 0px;
+  padding-bottom: 10px;
+  border-top: 2px;
+  border-left: 0px;
+  border-right: 0px;
+  border-bottom: 0px;
+  border-style: solid;
+  border-color: rgba(150, 150, 150, 1);
+}
+
+code {
+  font-family: monospace;
+  font-size: 16px;
 }

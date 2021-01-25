@@ -23,6 +23,26 @@ How about some code?
     print(thing)
   ```
 
+  ```rust
+  // and some rust
+  #[tokio::main]
+  async fn main() {
+      pretty_env_logger::init();
+      // GET / => 200 OK with body "Hello, root!"
+      let hello = warp::path::end().map(|| "Hello.");
+      // GET /blog
+      let blog = warp::path!("blog").map(|| "Welcome to my blog.");
+      // GET /blog/[article_title]
+      let posts = warp::path!("blog" / String).map(|post| get_post(post));
+  
+      // API
+      let routes = warp::get().and(hello.or(blog).or(posts));
+  
+      log::info!("Starting server...");
+      warp::serve(routes).run(([127, 0, 0, 1], 3030)).await;
+  }
+  ```
+
 ### Subsubheader
 
 Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Malesuada fames ac turpis egestas sed tempus urna et. Convallis tellus id interdum velit laoreet id. Amet nulla facilisi morbi tempus iaculis urna. Erat imperdiet sed euismod nisi. Id cursus metus aliquam eleifend mi in nulla posuere. Commodo elit at imperdiet dui. Libero id faucibus nisl tincidunt eget nullam non nisi est. Scelerisque viverra mauris in aliquam sem fringilla ut morbi. Imperdiet proin fermentum leo vel orci. Vulputate eu scelerisque felis imperdiet proin fermentum leo vel.

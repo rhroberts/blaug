@@ -36,8 +36,14 @@ fn get_post(title: String) -> http::Result<Response<String>> {
         };
         let body: String = markdown::to_html(&mkd);
         let style = fs::read_to_string(css_path).unwrap();
-        let head = format!("<head><style>{}</style></head>\n\n", style);
-        println!("{}{}", &head, &body);
+        let highlight_js = String::from(
+            "<link rel=\"stylesheet\" href=\"//cdn.jsdelivr.net/gh/highlightjs/cdn-release@10.5.0/build/styles/default.min.css\">\n<script src=\"//cdn.jsdelivr.net/gh/highlightjs/cdn-release@10.5.0/build/highlight.min.js\">\n</script>\n<script>\nhljs.initHighlightingOnLoad();\n</script>\n"
+        );
+        let head = format!(
+            "<head>\n<style>\n{}</style>\n{}\n</head>\n\n",
+            style, highlight_js
+        );
+        println!("{}", &head);
         return Response::builder().body(head + &body);
     } else {
         return Response::builder().body(format!(
