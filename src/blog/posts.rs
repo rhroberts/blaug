@@ -3,8 +3,8 @@ use std::{fs, path::Path};
 use warp::http::{self, Response};
 
 pub fn get_post(title: String) -> http::Result<Response<String>> {
-    let css_path = Path::new("./assets/css/blog_posts.css");
-    let post_string = format!("./assets/posts/{}.md", title);
+    let css_path = Path::new("./static/blog/css/blog_posts.css");
+    let post_string = format!("./static/blog/posts/{}.md", title);
     let post_path = Path::new(&post_string);
     if post_path.exists() {
         let markdown = fs::read_to_string(post_path).unwrap();
@@ -21,9 +21,10 @@ pub fn get_post(title: String) -> http::Result<Response<String>> {
 
 fn make_post_html(markdown: String, stylesheet: String, hljs_style: &str) -> String {
     let head: String = make_head_tag(format!(
-        "{}{}",
+        "{}{}{}",
         make_style_tag(stylesheet),
-        make_hljs_boilerplate(hljs_style)
+        make_hljs_boilerplate(hljs_style),
+        make_link_tag("icon", "/static/favicon.ico")
     ));
     let body: String = format!("\n<body>\n{}", markdown::to_html(&markdown));
     return format!("<html>\n{}{}\n</html>", head, body);
