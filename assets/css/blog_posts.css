@@ -7,7 +7,7 @@
 }
 
 ::-webkit-scrollbar-thumb {
-  background-color: rgba(100, 150, 255, 1);
+  background-color: rgba(100, 150, 100, 1);
   border-radius: 10px;
 }
 
@@ -29,8 +29,8 @@ h1 {
   border-right: 0px;
   border-bottom: 5px;
   border-style: solid;
-  border-color: rgba(100, 150, 255, 1);
-  color: rgba(100, 150, 255, 1);
+  border-color: rgba(100, 150, 100, 1);
+  color: rgba(53, 53, 53, 1);
   padding-bottom: 10px;
 }
 
@@ -39,15 +39,12 @@ img {
 }
 
 pre {
-  background-color: #e8e8e8;
-  padding-top: 0px;
-  padding-bottom: 10px;
-  border-top: 2px;
+  border-top: 3px;
   border-left: 0px;
   border-right: 0px;
   border-bottom: 0px;
   border-style: solid;
-  border-color: rgba(150, 150, 150, 1);
+  border-color: rgba(100, 150, 100, 1);
 }
 
 code {

@@ -1,4 +1,4 @@
-# My First Post
+# An Example Post
 
 Some intro.
 
@@ -59,7 +59,7 @@ A [hyperlink](https://duckduckgo.com).
 
 Here's giles.
 
-![giles](https://raw.githubusercontent.com/rhroberts/blaug/main/assets/posts/photos/giles.png)
+![giles](/static/giles.png)
 
 ## Conclusion
 
