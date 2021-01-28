@@ -21,7 +21,8 @@ pub fn get_post(title: String) -> http::Result<Response<String>> {
 
 fn make_post_html(markdown: String, stylesheet: String, hljs_style: &str) -> String {
     let head: String = make_head_tag(format!(
-        "{}{}{}",
+        "{}{}{}{}",
+        make_meta_tag("charset", "UTF-8"),
         make_style_tag(stylesheet),
         make_hljs_boilerplate(hljs_style),
         make_link_tag("icon", "/static/favicon.ico")
@@ -48,6 +49,10 @@ fn make_script_src_tag(src: &str) -> String {
 
 fn make_style_tag(style: String) -> String {
     return format!("\n<style>\n{}</style>\n", style);
+}
+
+fn make_meta_tag(key: &str, value: &str) -> String {
+    return format!("\n<meta {}={}>", key, value);
 }
 
 fn make_hljs_boilerplate(style: &str) -> String {
