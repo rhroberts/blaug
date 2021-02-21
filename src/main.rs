@@ -1,6 +1,3 @@
-// mod blog;
-
-// use blog::posts;
 use markdown;
 use std::{fs, path::Path};
 use tera::Tera;
@@ -33,7 +30,6 @@ async fn main() -> tide::Result<()> {
     tera.autoescape_on(vec!["html"]);
 
     let mut app = tide::with_state(tera);
-
     // serve static files
     app.at("/static").serve_dir("static/")?;
     // root
@@ -55,9 +51,8 @@ async fn main() -> tide::Result<()> {
         .get(|req: tide::Request<Tera>| async move {
             let tera = req.state();
             let post = req.param("post")?;
-            let post_string = format!("./static/posts/{}.md", post);
-            let post_path = Path::new(&post_string);
-            let mkd = fs::read_to_string(&post_path)?;
+            let post_path = format!("./static/posts/{}.md", post);
+            let mkd = fs::read_to_string(Path::new(&post_path))?;
             tera.render_response(
                 "blog_post.html",
                 &context! {
