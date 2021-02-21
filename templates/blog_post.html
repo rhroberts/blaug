@@ -1,0 +1,17 @@
+<html>
+  <head>
+    <meta charset=UTF-8>
+    <title> {{ title }} </title>
+    <link rel="stylesheet" href="/static/styles/blog_posts.css">
+    <link
+      rel="stylesheet"
+      href="//cdn.jsdelivr.net/gh/highlightjs/cdn-release@10.5.0/build/styles/atom-one-dark.min.css"
+    >
+    <script src="//cdn.jsdelivr.net/gh/highlightjs/cdn-release@10.5.0/build/highlight.min.js"/>
+    <script> hljs.initHighlightingOnLoad(); </script>
+    <link rel="icon" href="/static/favicon.ico">
+  </head>
+  <body>
+    {{ markdown_content | safe }}
+  </body>
+</html>

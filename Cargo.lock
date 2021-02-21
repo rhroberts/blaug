@@ -361,7 +361,6 @@ name = "blaug"
 version = "0.1.0"
 dependencies = [
  "async-std",
- "lazy_static",
  "log",
  "markdown",
  "serde",

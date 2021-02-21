@@ -59,7 +59,7 @@ A [hyperlink](https://duckduckgo.com).
 
 Here's giles.
 
-![giles](/static/giles.png)
+![giles](/static/posts/images/giles.png)
 
 ## Conclusion
 

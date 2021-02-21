@@ -2,4 +2,4 @@
 
 Here's a picture of my pops:
 
-![Dad](/static/dad.jpg)
+![Dad](/static/posts/images/dad.jpg)
